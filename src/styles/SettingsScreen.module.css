@@ -1,0 +1,378 @@
+/* src/screens/Main/SettingsScreen.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9ff;
+}
+
+.header {
+    padding: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: linear-gradient(to right, #667eea, #764ba2); /* Gradient */
+    color: white;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.backButton {
+    padding: 8px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    cursor: pointer;
+}
+.backButton:hover {
+    background-color: rgba(255,255,255,0.3);
+}
+
+.headerTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.placeholder { /* For centering title when back button is present */
+    width: 40px; /* Adjust to match backButton size if needed */
+    height: 40px;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 800px; /* Narrower for settings page */
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.section {
+    margin-bottom: 24px;
+}
+
+.sectionTitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sectionContent {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.settingItem {
+    margin-bottom: 20px;
+}
+.settingItem:last-child {
+    margin-bottom: 0;
+}
+
+.settingLabel {
+    display: block;
+    font-size: 0.875rem;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.fieldContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+.fieldContainer:hover .editIcon {
+    color: #5a6fcf;
+}
+
+
+.settingValue {
+    font-size: 1rem;
+    color: #333;
+    flex-grow: 1;
+}
+
+.editIcon {
+    color: #667eea;
+    margin-left: 10px;
+}
+
+.editContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.editInput {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 1rem;
+}
+
+.editButtons {
+    display: flex;
+    gap: 8px;
+}
+
+.editButton {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+}
+
+.cancelButton {
+    background-color: #f0f0f0;
+    color: #555;
+}
+.cancelButton:hover {
+    background-color: #e0e0e0;
+}
+
+.saveButton {
+    background-color: #667eea;
+    color: #fff;
+}
+.saveButton:hover {
+    background-color: #5a6fcf;
+}
+
+.passwordInputContainer {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.passwordInput {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 12px 16px;
+    padding-right: 40px; /* Space for eye icon */
+    font-size: 1rem;
+}
+
+.eyeButton {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: #666;
+}
+
+.changePasswordButton {
+    background-color: #667eea;
+    color: #fff;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 100%;
+}
+.changePasswordButton:hover {
+    background-color: #5a6fcf;
+}
+
+
+.preferenceItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.preferenceItem:last-child {
+    border-bottom: none;
+}
+
+.preferenceInfo {
+    flex-grow: 1;
+    margin-right: 16px;
+}
+
+.preferenceLabel {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+    display: block; /* So it can be used with htmlFor */
+}
+
+.preferenceDescription {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* Basic CSS Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px; /* Adjust size */
+    height: 28px; /* Adjust size */
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px; /* Adjust size */
+    width: 20px; /* Adjust size */
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #667eea;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #667eea;
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px); /* Adjust distance */
+}
+
+.slider.round {
+    border-radius: 28px; /* Should be height */
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+.actionButton {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-radius: 12px;
+    background-color: #fff; /* Changed from f8f9ff to match sectionContent */
+    margin-bottom: 12px;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.actionButton:hover {
+    background-color: #f9f9f9;
+}
+
+
+.actionIconLogout, .actionTextLogout {
+    color: #dc3545; /* Bootstrap danger red */
+}
+.actionIconDelete, .actionTextDelete {
+    color: #c82333; /* Darker red for delete */
+}
+
+.actionButton span { /* Generalize for text next to icon */
+    margin-left: 12px;
+}
+
+
+.dangerButton {
+    /* No specific style needed if text and icon colors are set directly */
+}
+.dangerButton:hover {
+    background-color: #ffebee; /* Light red hover */
+}
+
+
+.infoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.infoItem:last-child {
+    border-bottom: none;
+}
+
+.infoLabel {
+    font-size: 1rem;
+    color: #555;
+}
+
+.infoValue {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+    word-break: break-all;
+}
+
+.centerContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Simple CSS spinner */
+.loadingSpinner {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #667eea; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

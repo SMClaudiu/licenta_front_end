@@ -1,0 +1,350 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9ff;
+}
+
+.header {
+    padding: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: linear-gradient(to right, #667eea, #764ba2); /* Gradient */
+    color: white;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Example max-width for content */
+    margin: 0 auto;
+}
+
+.welcomeText {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.userName {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.settingsButton {
+    padding: 8px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    cursor: pointer;
+}
+.settingsButton:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.searchContainer {
+    padding: 16px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.searchInput {
+    flex-grow: 1;
+    margin-left: 12px;
+    font-size: 1rem;
+    color: #333;
+    border: none;
+    outline: none;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    margin-top: 20px;
+}
+
+.sectionTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.addButton {
+    background-color: #667eea;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.addButton:hover {
+    background-color: #5a6fcf;
+}
+
+.listContainer {
+    padding-bottom: 20px;
+    display: grid; /* For a nice card layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.boardCard {
+    margin-bottom: 0; /* Handled by grid gap */
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: transparent; /* Gradient will cover */
+    border: none;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    overflow: hidden; /* Ensure gradient corners are clipped */
+    transition: transform 0.2s ease-in-out;
+}
+.boardCard:hover {
+    transform: translateY(-5px);
+}
+
+.boardGradient {
+    border-radius: 16px; /* Match card */
+    padding: 20px;
+    background: linear-gradient(to bottom right, #667eea, #764ba2);
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.boardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.boardInfo {
+    flex-grow: 1;
+}
+
+.boardName {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+    word-break: break-word;
+}
+
+.boardDescription {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+.deleteButton {
+    padding: 8px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    cursor: pointer;
+}
+.deleteButton:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.boardStats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.statNumber {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.statLabel {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+.progressBarContainer {
+    margin-top: 8px;
+}
+
+.progressBarBackground {
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progressBarFill {
+    height: 100%;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: width 0.3s ease-in-out;
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    text-align: center;
+    color: #666;
+    grid-column: 1 / -1; /* Span all columns if grid is used */
+}
+
+.emptyStateText {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+.emptyStateSubtext {
+    font-size: 0.875rem;
+    color: #999;
+    margin-top: 8px;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.modalTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modalInput {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.modalButton {
+    flex-grow: 1;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.cancelButton {
+    background-color: #f5f5f5;
+    color: #666;
+}
+.cancelButton:hover {
+    background-color: #e0e0e0;
+}
+
+.createButton {
+    background-color: #667eea;
+    color: #fff;
+}
+.createButton:hover {
+    background-color: #5a6fcf;
+}
+
+.centerContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.loadingText {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Simple CSS spinner */
+.loadingSpinner {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #667eea; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Adjust list for smaller screens if using grid */
+@media (max-width: 768px) {
+    .listContainer {
+        grid-template-columns: 1fr; /* Stack cards on smaller screens */
+    }
+}

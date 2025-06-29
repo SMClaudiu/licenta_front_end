@@ -1,0 +1,461 @@
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.centerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.header {
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.backButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.backButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.boardTitleSection {
+    flex: 1;
+    margin: 0 1rem;
+    text-align: center;
+}
+
+.boardTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.boardTitle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.editNameContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.editNameInput {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0.5rem;
+    text-align: center;
+    min-width: 200px;
+}
+
+.editNameInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.boardStats {
+    margin-top: 0.5rem;
+}
+
+.statBadge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    display: inline-block;
+}
+
+.settingsButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.settingsButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.searchContainer {
+    padding: 1rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.searchInput {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1rem;
+}
+
+.searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.content {
+    padding: 1rem 1.5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.addButton {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(10px);
+}
+
+.addButton:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.taskItem {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s;
+}
+
+.taskItem:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.taskCheckbox {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.taskCheckbox:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.taskContent {
+    flex: 1;
+}
+
+.taskName {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 0.5rem 0;
+    transition: all 0.2s;
+}
+
+.taskName.completed {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.taskDescription {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.4;
+}
+
+.taskMeta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.priorityBadge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.priorityBadge.high {
+    background: rgba(244, 67, 54, 0.3);
+    color: #ffcdd2;
+}
+
+.priorityBadge.medium {
+    background: rgba(255, 152, 0, 0.3);
+    color: #ffe0b2;
+}
+
+.priorityBadge.low {
+    background: rgba(76, 175, 80, 0.3);
+    color: #c8e6c9;
+}
+
+.dueDateBadge .creationDateBadge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.taskMenuButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.taskMenuButton:hover {
+    background: rgba(244, 67, 54, 0.2);
+    color: #ffcdd2;
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.emptyStateText {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 1rem 0 0.5rem 0;
+    opacity: 0.9;
+}
+
+.emptyStateSubtext {
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.7;
+}
+
+.loadingSpinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loadingText {
+    margin-top: 1rem;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.errorState {
+    text-align: center;
+    padding: 2rem;
+}
+
+.errorText {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 0.5rem 0;
+    color: #ffcdd2;
+}
+
+.errorSubtext {
+    font-size: 1rem;
+    margin: 0 0 1.5rem 0;
+    opacity: 0.8;
+}
+
+.retryButton {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+/* styles.css or BoardScreen.module.css */
+.modalOverlay {
+    position: fixed; /* Cover the whole screen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.modalContent {
+    background: #2c2f33; /* Dark background for the modal itself, adjust as needed */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    min-width: 300px; /* Or your desired width */
+    max-width: 500px;
+    color: white; /* Assuming text inside modal should be white */
+}
+
+.modalTitle {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.formGroup {
+    margin-bottom: 1rem;
+}
+
+.modalLabel {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #b0b3b8; /* Lighter text for labels */
+}
+
+.modalInput {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #4f545c; /* Slightly lighter border */
+    background-color: #36393f; /* Darker input background */
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box; /* Important for padding and width */
+}
+
+.modalInput:focus {
+    outline: none;
+    border-color: #7289da; /* Discord-like accent color for focus */
+    box-shadow: 0 0 0 2px rgba(114, 137, 218, 0.3);
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.modalButton {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modalButton.cancelButton {
+    background-color: #4f545c; /* Darker gray for cancel */
+    color: white;
+}
+
+.modalButton.cancelButton:hover {
+    background-color: #5c626b;
+}
+
+.modalButton.createButton { /* Can be reused for "Save Changes" */
+    background-color: #7289da; /* Accent color */
+    color: white;
+}
+
+.modalButton.createButton:hover {
+    background-color: #677bc4;
+}
+
+.modalButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

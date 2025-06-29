@@ -1,0 +1,267 @@
+/* src/index.css (or your global CSS file) */
+
+/* 1. CSS Custom Properties (Variables) for Theming */
+:root {
+  /* Font Families */
+  --font-primary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  /* Base Font Sizes & Line Heights */
+  --font-size-base: 16px; /* Can be adjusted based on preference */
+  --line-height-base: 1.6;
+  --line-height-heading: 1.3;
+
+  /* Spacing Units (example) */
+  --spacing-xs: 0.25rem;  /* 4px */
+  --spacing-sm: 0.5rem;   /* 8px */
+  --spacing-md: 1rem;     /* 16px */
+  --spacing-lg: 1.5rem;   /* 24px */
+  --spacing-xl: 2rem;     /* 32px */
+  --spacing-xxl: 3rem;    /* 48px */
+
+  /* Radii */
+  --border-radius-sm: 0.25rem; /* 4px */
+  --border-radius-md: 0.5rem;  /* 8px */
+  --border-radius-lg: 0.75rem; /* 12px */
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.25s ease-in-out;
+
+  /* Default Color Scheme (Light Mode) */
+  --color-text: #213547;
+  --color-text-muted: #556678;
+  --color-background: #ffffff;
+  --color-surface: #f8f9fa; /* For cards, modals, etc. */
+  --color-primary: #646cff;
+  --color-primary-hover: #535bf2;
+  --color-primary-active: #454ce1;
+  --color-border: #dee2e6;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; /* Prevent text scaling on mobile */
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: rgba(255, 255, 255, 0.87);
+    --color-text-muted: rgba(255, 255, 255, 0.6);
+    --color-background: #1e1e1e; /* Darker than #242424 for more depth */
+    --color-surface: #2a2a2a;
+    --color-primary: #747bff; /* Lighter primary for dark mode */
+    --color-primary-hover: #838cfc;
+    --color-primary-active: #656efb;
+    --color-border: #3a3a3a;
+    --color-shadow: rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* 2. Gentle Reset & Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-size-base); /* Establishes 1rem = 16px (or your base) */
+  line-height: var(--line-height-base);
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  min-height: 100vh;
+  display: flex; /* Allow #root to grow if needed */
+  flex-direction: column; /* Allow #root to grow if needed */
+}
+
+/* Ensure #root can take full height for SPA layouts */
+#root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* Remove max-width and centering if you want components to control this */
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  /* padding: var(--spacing-xl); */ /* Consider if global padding is needed here or per-page */
+}
+
+/* 3. Responsive Typography */
+h1, h2, h3, h4, h5, h6 {
+  line-height: var(--line-height-heading);
+  font-weight: 700; /* Bolder headings */
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text); /* Ensure headings also pick up text color */
+}
+
+h1 {
+  /* Responsive font size using clamp: min, preferred, max */
+  font-size: clamp(2rem, 1.625rem + 1.5vw, 3.2rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 1.375rem + 1.25vw, 2.5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  max-width: 65ch; /* Improve readability for long text blocks */
+}
+
+/* 4. Links */
+a {
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none; /* Often preferred to remove underline by default */
+  transition: color var(--transition-fast);
+}
+a:hover,
+a:focus {
+  color: var(--color-primary-hover);
+  text-decoration: underline; /* Add underline on hover/focus for accessibility */
+}
+a:focus-visible { /* Modern focus outline */
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+
+/* 5. Buttons - More Modern Styling */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  display: inline-flex; /* Allows aligning icon + text */
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 1rem; /* Consistent base size */
+  font-weight: 600; /* Slightly bolder */
+  padding: var(--spacing-sm) var(--spacing-lg); /* Example padding */
+  border-radius: var(--border-radius-md);
+  border: 1px solid transparent; /* Start with transparent border */
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+  text-align: center;
+  white-space: nowrap; /* Prevent text wrapping */
+
+  /* Default button appearance */
+  background-color: var(--color-primary);
+  color: white; /* Text color for primary button */
+  border-color: var(--color-primary);
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
+  background-color: var(--color-primary-active);
+  border-color: var(--color-primary-active);
+}
+
+
+button:focus-visible,
+input[type="button"]:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="reset"]:focus-visible {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb, 100, 108, 255), 0.4); /* Custom focus ring. Assumes --color-primary-rgb is defined */
+  /* Define --color-primary-rgb in :root if you use this:
+     --color-primary-rgb: 100, 108, 255;
+     @media (prefers-color-scheme: dark) { :root { --color-primary-rgb: 116, 123, 255; }}
+  */
+}
+
+button:disabled,
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Secondary/Outline Button Example (you'd apply a class like .button-secondary)
+.button-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.button-secondary:hover {
+  background-color: rgba(var(--color-primary-rgb, 100, 108, 255), 0.1);
+  color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+*/
+
+/* 6. Form Inputs (Basic Styling) */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  width: 100%; /* Default to full width, control with parent */
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb, 100, 108, 255), 0.25);
+  /* Define --color-primary-rgb in :root for this to work perfectly with opacity */
+}
+
+
+/* 7. Utilities (Optional) */
+.sr-only { /* For screen-reader only text */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Remove default Vite demo styles if they were here e.g. .logo, .card */
