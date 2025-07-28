@@ -1,0 +1,219 @@
+/* Shared authentication styles for Login and Signup screens */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../../public/login_background_1920x1080.png');
+    /* MODIFIED: Changed to vivid purple gradient from the image, removed animation and placeholder url */
+    /*background
+    /* Use cover for a single background */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* REMOVED: Unused animation */
+/* @keyframes gradientShift ... */
+
+.auth-glass-card {
+    /* MODIFIED: Replaced glass effect with solid color from the image */
+    background: #3a3258;
+    border-radius: 15px; /* MODIFIED: Slightly reduced for accuracy */
+    /* MODIFIED: Removed blur and border for a solid look */
+    box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.4); /* MODIFIED: Adjusted shadow for solid card */
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-title {
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    /* MODIFIED: Removed text-shadow for a cleaner look like the image */
+}
+
+.auth-input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.auth-label {
+    display: block;
+    /* MODIFIED: Softer white color */
+    color: #d1d1d1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.auth-input {
+    width: 100%;
+    /* MODIFIED: Solid, darker background for input fields */
+    background: #2c2747;
+    /* MODIFIED: Removed border */
+    border: none;
+    border-radius: 8px; /* MODIFIED: Reduced for accuracy */
+    padding: 1rem;
+    padding-right: 3rem;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    /* MODIFIED: Removed backdrop-filter as it's no longer a glass UI */
+}
+
+.auth-input:focus {
+    outline: none;
+    /* MODIFIED: Adjusted focus color to better match the theme */
+    border: 1px solid rgba(138, 113, 255, 0.5);
+    box-shadow: 0 0 20px rgba(138, 113, 255, 0.3);
+    background: #312b4f; /* MODIFIED: Darker focus background */
+}
+
+.auth-input::placeholder {
+    /* MODIFIED: Adjusted placeholder color to match image */
+    color: #8a8a9e;
+}
+
+.auth-input-icon {
+    position: absolute;
+    right: 1rem;
+    /* MODIFIED: Corrected vertical position to be inside the input field */
+    top: 2.9rem;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.25rem;
+}
+
+.auth-password-toggle {
+    position: absolute;
+    right: 1rem;
+    /* MODIFIED: Corrected vertical position to be inside the input field */
+    top: 2.9rem;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.auth-password-toggle:hover {
+    color: rgba(0, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.auth-primary-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #00f5ff 0%, #0066ff 100%);
+    border: none;
+    border-radius: 8px; /* MODIFIED: Reduced for accuracy */
+    padding: 1rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.auth-primary-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 245, 255, 0.4);
+}
+
+.auth-primary-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.auth-secondary-btn {
+    background: none;
+    border: none;
+    /* MODIFIED: Adjusted color to match "Remember me" text */
+    color: #d1d1d1;
+    font-size: 0.875rem;
+    cursor: pointer;
+    /* MODIFIED: Removed default underline to match "Forgot Password?" */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.25rem;
+}
+
+.auth-secondary-btn:hover {
+    color: rgba(0, 255, 255, 0.9);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    /* MODIFIED: Add underline on hover for better feedback */
+    text-decoration: underline;
+}
+
+.auth-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.auth-footer-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.auth-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.auth-checkbox {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #00f5ff;
+}
+
+.auth-checkbox-label {
+    /* MODIFIED: Adjusted color to match other secondary text */
+    color: #d1d1d1;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.auth-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 1rem 0;
+}
+
+/* Form styling for better semantics */
+.auth-form {
+    width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+    .auth-glass-card {
+        padding: 2rem;
+        margin: 1rem;
+    }
+
+    .auth-title {
+        font-size: 1.75rem;
+    }
+}
