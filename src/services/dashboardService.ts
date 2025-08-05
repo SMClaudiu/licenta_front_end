@@ -4,25 +4,49 @@ import api from './apiClient';
 
 export class DashboardService {
 
-    static async getDashboardByClientId(clientId: number): Promise<DashboardDTO> {
+    /**
+     * Fetches all dashboards for a given client ID.
+     * Assumes the backend endpoint returns an array of dashboards: DashboardDTO[].
+     */
+    static async getDashboardsByClientId(clientId: number): Promise<DashboardDTO[]> {
         try {
+            // This endpoint is assumed to return a list of dashboards.
             const response = await api.get(`/dashboard/findByClientId/${clientId}`);
-            if (!response.data || Object.keys(response.data).length === 0) {
-                console.log("Response is " + response.data)
-                throw new Error('Dashboard not found for client.');
-            }
-            return response.data;
+            // An empty array is a valid response for a user with no dashboards.
+            return response.data || [];
         } catch (error: any) {
-            DashboardService._handleApiError(error, 'Failed to fetch dashboard');
+            DashboardService._handleApiError(error, 'Failed to fetch dashboards');
         }
     }
 
-    static async createDashboard(dashboard: Omit<DashboardDTO, 'dashBoardId'>): Promise<DashboardDTO> {
+    static async getDashboardById(dashboardId: number): Promise<DashboardDTO> {
         try {
-            const { data } = await api.patch(`/dashboard/saveDashboard`, dashboard);
+            const response = await api.get(`/dashboard/findByDashBoardId/${dashboardId}`);
+            if (!response.data) {
+                throw new Error('Dashboard not found.');
+            }
+            return response.data;
+        } catch (error: any) {
+            DashboardService._handleApiError(error, 'Failed to fetch dashboard details');
+        }
+    }
+
+
+    static async createDashboard(dashboardData: { dashBoardName: string, clientId: number }): Promise<DashboardDTO> {
+        try {
+            const { data } = await api.post(`/dashboard/saveDashboard`, dashboardData);
             return data;
         } catch (error: any) {
             DashboardService._handleApiError(error, 'Failed to create dashboard');
+        }
+    }
+
+
+    static async deleteDashboard(dashboardId: number): Promise<void> {
+        try {
+            await api.delete(`/dashboard/removeById/${dashboardId}`);
+        } catch (error: any) {
+            DashboardService._handleApiError(error, 'Failed to delete dashboard');
         }
     }
 
@@ -32,7 +56,6 @@ export class DashboardService {
             return data;
         } catch (error: any) {
             DashboardService._handleApiError(error, 'Failed to create board');
-            return error;
         }
     }
 
@@ -44,20 +67,11 @@ export class DashboardService {
         }
     }
 
-    static async updateBoardName(boardId: number, newName: string): Promise<BoardDTO> {
-        try {
-            const { data } = await api.patch(`/board/updateBoardName/${boardId}?new_name=${encodeURIComponent(newName)}`);
-            return data;
-        } catch (error: any) {
-            DashboardService._handleApiError(error, 'Failed to update board name');
-        }
-    }
-
     public static _handleApiError(error: any, defaultMessage: string): never {
         if (error.response) {
             const status = error.response.status;
             const message = error.response.data?.message || defaultMessage;
-            console.error('API Error ${status}: ${message}');
+            console.error(`API Error ${status}: ${message}`);
             throw new Error(message);
         } else if (error.request) {
             console.error('No response received:', error.message);

@@ -5,13 +5,14 @@ import { DashboardDTO } from '../types/api';
 import { useAuth } from '../contexts/AuthContext';
 
 export const useDashboardData = () => {
-    const [dashboard, setDashboard] = useState<DashboardDTO | null>(null);
+    // State now holds an array of dashboards
+    const [dashboards, setDashboards] = useState<DashboardDTO[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const { userData } = useAuth();
 
     useEffect(() => {
-        const fetchDashboard = async () => {
+        const fetchDashboards = async () => {
             if (!userData || !userData.clientId) {
                 setError('User not authenticated or missing client ID.');
                 setLoading(false);
@@ -20,19 +21,21 @@ export const useDashboardData = () => {
             setLoading(true);
             setError(null);
             try {
-                const dash = await DashboardService.getDashboardByClientId(userData.clientId);
-                if (!dash.board_list) {
-                    dash.board_list = [];
-                }
-                setDashboard(dash);
+                // Fetch the list of dashboards
+                const fetchedDashboards = await DashboardService.getDashboardsByClientId(userData.clientId);
+                setDashboards(fetchedDashboards);
             } catch (err: any) {
-                setError(err.message || 'Failed to load dashboard');
+                setError(err.message || 'Failed to load dashboards');
             } finally {
                 setLoading(false);
             }
         };
-        fetchDashboard();
+
+        if (userData?.clientId) {
+            fetchDashboards();
+        }
     }, [userData]);
 
-    return { dashboard, setDashboard, loading, error };
+    // Return the dashboards array and its setter
+    return { dashboards, setDashboards, loading, error };
 };

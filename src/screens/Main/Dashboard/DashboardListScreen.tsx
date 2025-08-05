@@ -3,27 +3,26 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useDashboardData } from '../../../hooks/useDashboardData';
-import { useBoardManagement } from '../../../hooks/useBoardManagement';
+import { useDashboardManagement } from '../../../hooks/useDashboardManagement';
 import DashboardHeader from './DashboardHeader';
-import AddBoardForm from './AddBoardForm';
-import BoardList from './BoardList';
+import AddDashboardForm from './AddDashboardForm';
+import DashboardGrid from './DashboardGrid';
 import LoadingDisplay from '../LoadingDisplay';
 import ErrorDisplay from '../ErrorDisplay';
-import styles from '../../../styles/DashboardListScreen.module.css'
-
+import styles from '../../../styles/DashboardListScreen.module.css';
 
 const DashboardListScreen: React.FC = () => {
-    const { signOut: authSignOut, userData } = useAuth(); // Renamed signOut to avoid conflict
+    const { signOut: authSignOut, userData } = useAuth();
     const navigate = useNavigate();
 
-    const { dashboard, setDashboard, loading, error } = useDashboardData();
+    const { dashboards, setDashboards, loading, error } = useDashboardData();
     const {
-        creatingBoard,
-        newBoardName,
-        setNewBoardName,
-        handleCreateBoard,
-        handleDeleteBoard,
-    } = useBoardManagement({ dashboard, setDashboard });
+        isCreating,
+        newItemName,
+        setNewItemName,
+        handleCreateItem,
+        handleDeleteItem,
+    } = useDashboardManagement({ items: dashboards, setItems: setDashboards });
 
     const clientName = userData?.name || "User";
 
@@ -40,26 +39,32 @@ const DashboardListScreen: React.FC = () => {
         navigate('/settings', { replace: true });
     };
 
+    const handleDashboardClick = (dashboardId: number) => {
+        navigate(`/dashboard/${dashboardId}`);
+    };
+
     if (loading) return <LoadingDisplay />;
-    if (error) return <ErrorDisplay message={error || "Ceva nasol s-a intamplat"} />;
+    if (error) return <ErrorDisplay message={error || "Something went wrong"} />;
 
     return (
         <div className={styles.container}>
             <DashboardHeader
-                clientName={clientName} // Prioritize name from userData if available
+                clientName={clientName}
                 onSettingsClick={handleSettings}
                 onLogoutClick={handleLogout}
             />
-            <AddBoardForm
-                newBoardName={newBoardName}
-                onNewBoardNameChange={setNewBoardName}
-                onCreateBoard={handleCreateBoard}
-                isCreating={creatingBoard}
+            <AddDashboardForm
+                newItemName={newItemName}
+                onNewItemNameChange={setNewItemName}
+                onCreateItem={handleCreateItem}
+                isCreating={isCreating}
             />
             <main className={styles.content}>
-                {dashboard && (
-                    <BoardList boards={dashboard.board_list || []} onDeleteBoard={handleDeleteBoard} />
-                )}
+                <DashboardGrid
+                    dashboards={dashboards || []}
+                    onDashboardClick={handleDashboardClick}
+                    onDeleteDashboard={handleDeleteItem}
+                />
             </main>
         </div>
     );

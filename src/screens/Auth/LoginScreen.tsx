@@ -19,8 +19,10 @@ export default function LoginScreen() {
             alert("Please enter both email and password.");
             return;
         }
-        setIsLoggingIn(true);
+        setIsLoggingIn(true);   
         console.log('Login attempt with:', email);
+        console.log('Email', email)
+        console.log('Password:', password);
         try {
             await logIn({ email, password });
             console.log('Login successful, navigating to dashboard');
