@@ -29,10 +29,9 @@ export class TaskService {
         }
     }
 
-    // The backend expects TaskDTO in the request body for creation
     static async createTask(boardId: number, taskData: Omit<TaskDTO, 'taskId'>): Promise<TaskDTO> {
         try {
-            // Ensure dueDate is in ISO string format if it exists, or undefined
+
             const payload = {
                 ...taskData,
                 name: taskData.name,

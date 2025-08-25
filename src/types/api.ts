@@ -4,12 +4,6 @@ export interface LoginRequest {
     password: string;
 }
 
-
-export interface LocationState {
-    board?: BoardDTO; // The board object might be passed
-}
-
-
 export interface LoginResponse {
     token: string;
     client: ClientDTO;
@@ -60,7 +54,80 @@ export interface DashboardDTO {
     board_list: BoardDTO[];
 }
 
-export interface ApiError {
-    message: string;
-    status?: number;
+export interface TaskAdviceRequest {
+  id: string;
+  name: string;
+  description: string;
+  creation_date?: string;
+  due_date?: string;
+  board_name?: string;
+  client_name?: string;
+  client_email?: string;
+  status?: string;
+}
+
+export interface PriorityRecommendation {
+  level: 'High' | 'Medium' | 'Low';
+  message: string;
+  estimated_days: number;
+}
+
+export interface TaskAdviceResponse {
+  success: boolean;
+  advice?: {
+    status_prediction: string;
+    confidence_score: number;
+    estimated_completion: number;
+    priority_recommendation: PriorityRecommendation;
+    actionable_suggestions: string[];
+    risk_factors: string[];
+    optimization_tips: string[];
+    next_steps: string[];
+  };
+  metadata?: {
+    generated_at: string;
+    model_version: string;
+  };
+  error?: string;
+}
+
+export interface UseAIAdviceReturn {
+  advice: TaskAdviceResponse | null;
+  loading: boolean;
+  error: string | null;
+  getAdvice: (taskData: TaskAdviceRequest) => Promise<void>;
+  clearAdvice: () => void;
+}
+
+export interface AIAdviceButtonProps {
+  onClick: () => void;
+  loading?: boolean;
+  disabled?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary';
+  className?: string;
+}
+
+export interface TaskAdvicePanel {
+    taskData: Partial<TaskDTO>;
+    isVisible: boolean;
+}
+
+export interface AIAdviceModalProps {
+  advice: TaskAdviceResponse;
+  onClose: () => void;
+  taskName: string;
+}
+
+export interface TaskItemProps {
+    task: TaskDTO;
+    onToggleStatus: (taskId: number) => void;
+    onDelete: (taskId: number) => void;
+    onEdit: (task: TaskDTO) => void;
+}
+
+export interface ExtendedTaskItemProps extends TaskItemProps {
+  boardName?: string;
+  clientName?: string;
+  clientEmail?: string;
 }

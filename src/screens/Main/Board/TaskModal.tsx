@@ -1,4 +1,3 @@
-// src/components/board/TaskModal.tsx
 import React, { useState, useEffect } from 'react';
 import styles from '../../../styles/BoardListScreen.module.css';
 import { TaskDTO, TaskStatus } from '../../../types/api';
@@ -23,10 +22,12 @@ const TaskModal: React.FC<TaskModalProps> = ({
     const [dueDate, setDueDate] = useState('');
     const [name, setName] = useState('');
     const [creationDate, setCreationDate] = useState('');
+    const [currentTaskData, setCurrentTaskData] = useState<Partial<TaskDTO>>({});
 
     const isEditMode = !!initialTaskData && initialTaskData.taskId !== undefined;
 
     useEffect(() => {
+
         if (isOpen) {
             if (isEditMode && initialTaskData) {
                 setName(initialTaskData.name || '');
@@ -45,7 +46,15 @@ const TaskModal: React.FC<TaskModalProps> = ({
                 setDueDate('');
             }
         }
-    }, [isOpen, initialTaskData, isEditMode]);
+        setCurrentTaskData({
+            name,
+            description,
+            creationDate: creationDate ? new Date(creationDate) : undefined,
+            dueDate: dueDate ? new Date(dueDate) : undefined
+        });
+
+    }, [isOpen, initialTaskData, isEditMode, name, description, creationDate, dueDate] );
+
 
     if (!isOpen) return null;
 
@@ -78,6 +87,7 @@ const TaskModal: React.FC<TaskModalProps> = ({
             await onSubmit(taskPayload as Omit<TaskDTO, 'taskId'>);
         }
     };
+            // aici trebuie de vazut cum integram modalul de show advice
 
     return (
         <div className={styles.modalOverlay} onClick={onClose}>
@@ -115,7 +125,7 @@ const TaskModal: React.FC<TaskModalProps> = ({
                         <label htmlFor="taskStatus" className={styles.modalLabel}>Status</label>
                         <select
                             id="taskStatus"
-                            className={styles.modalInput} // You might want a specific class for select
+                            className={styles.modalInput}
                             value={status}
                             onChange={(e) => setStatus(e.target.value as TaskStatus)}
                         >

@@ -1,4 +1,3 @@
-// utils/storage.ts
 export const storage = {
     get: (key: string) => {
         try {

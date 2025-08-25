@@ -28,10 +28,10 @@ const TaskToolbar: React.FC<TaskToolbarProps> = ({
                     />
                 </div>
             </div>
-            <div className={styles.sectionHeader}> {/* Moved Add button here for better grouping with title */}
+            <div className={styles.sectionHeader}>
                 <h2 className={styles.sectionTitle}>Tasks</h2>
                 <button className={styles.addButton} onClick={onOpenAddTaskModal} aria-label="Add new task">
-                    <IoAdd size={24} /> {/* Removed color="#fff" for CSS to handle */}
+                    <IoAdd size={24} />
                 </button>
             </div>
         </>
